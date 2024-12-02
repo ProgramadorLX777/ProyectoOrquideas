@@ -85,25 +85,34 @@
             <p>Planifica y visualiza los próximos riegos.</p>
             <button onclick="window.location.href='/calendario-riego'">Ver Calendario</button>
         </div>
+        <!--
         <div class="box">
             <h3>Datos en Tiempo Real</h3>
             <p>Consulta la temperatura y humedad actuales.</p>
             <li>
                 <a href="{{ route('datos.tiempoReal') }}">Datos en Tiempo Real</a>
             </li>
+        </div>-->
+
+        <div class="box">
+            <h3>Datos en Tiempo Real</h3>
+            <p>Consulta la temperatura y humedad actuales.</p>
+            <div id="datos_tiempo_real">
+                <p>Temperatura: <span id="temperatura">Cargando...</span> °C</p>
+                <p>Humedad: <span id="humedad">Cargando...</span> %</p>
+            </div>
         </div>
+
         <div class="box">
             <h3>Conectar Sensores</h3>
             <p>Administra y configura los sensores.</p>
+            <button id="activar-riego"
+            style="margin-top: 10px; background: #2196F3; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+            Activar Riego
+        </button>
         </div>
-    </div>
-    <div class="box">
-        <h3>Datos en Tiempo Real</h3>
-        <p>Consulta la temperatura y humedad actuales.</p>
-        <div id="datos_tiempo_real">
-            <p>Temperatura: <span id="temperatura">Cargando...</span> °C</p>
-            <p>Humedad: <span id="humedad">Cargando...</span> %</p>
-        </div>
+
+
     </div>
 
     <div class="box">
@@ -129,6 +138,17 @@
         </form>
     </div>-->
 
+    <!--<div class="box">
+        <h3>Datos en Tiempo Real</h3>
+        <p>Consulta la temperatura y humedad actuales.</p>
+        <div id="datos_tiempo_real">
+            <p>Temperatura: <span id="temperatura">Cargando...</span> °C</p>
+            <p>Humedad: <span id="humedad">Cargando...</span> %</p>
+        </div>
+
+    </div>-->
+
+
     <script>
         // Función para obtener datos del servidor
         async function obtenerDatos() {
@@ -150,6 +170,51 @@
         // Cargar los datos inicialmente
         obtenerDatos();
     </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Elementos del DOM
+            const temperaturaElement = document.getElementById('temperatura');
+            const humedadElement = document.getElementById('humedad');
+            const botonRiego = document.getElementById('activar-riego');
+
+            // Valores iniciales (simulados)
+            let temperaturaActual = 25; // Por ejemplo, 25°C
+            let humedadActual = 50; // Por ejemplo, 50%
+
+            // Mostrar valores iniciales
+            temperaturaElement.innerText = temperaturaActual;
+            humedadElement.innerText = humedadActual;
+
+            // Función para activar el riego
+            botonRiego.addEventListener('click', () => {
+                botonRiego.disabled = true; // Deshabilitar el botón mientras está en ejecución
+                botonRiego.innerText = "Riego Activado...";
+
+                const intervalo = setInterval(() => {
+                    // Disminuir temperatura y aumentar humedad
+                    if (temperaturaActual > 20) {
+                        temperaturaActual -= 0.2; // Disminuir gradualmente
+                    }
+                    if (humedadActual < 70) {
+                        humedadActual += 0.5; // Aumentar gradualmente
+                    }
+
+                    // Actualizar en pantalla
+                    temperaturaElement.innerText = temperaturaActual.toFixed(1);
+                    humedadElement.innerText = humedadActual.toFixed(1);
+
+                    // Detener el intervalo cuando se alcancen los valores objetivo
+                    if (temperaturaActual <= 20 && humedadActual >= 70) {
+                        clearInterval(intervalo);
+                        botonRiego.disabled = false; // Rehabilitar el botón
+                        botonRiego.innerText = "Activar Riego"; // Resetear el texto del botón
+                    }
+                }, 500); // Actualizar cada 500ms (0.5 segundos)
+            });
+        });
+    </script>
+
 
 </body>
 

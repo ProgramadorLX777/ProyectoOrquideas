@@ -50,8 +50,8 @@
         }
 
         // Llama a la función para actualizar los datos cada 5 segundos
-        setInterval(obtenerDatos, 2000);
-        obtenerDatos(); 
+        setInterval(obtenerDatos, 20000);
+        obtenerDatos();
     </script>
 </body>
 </html>
