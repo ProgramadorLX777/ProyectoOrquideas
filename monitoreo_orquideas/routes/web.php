@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DatosController;
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,4 +19,11 @@ Route::get('/dashboard', [DatosController::class, 'showDashboard']);
 Route::get('/calendario-riego', function () {
     return view('calendario-riego');
 });
+
+use App\Http\Controllers\WeatherController;
+
+// Ruta para exportar datos del clima en PDF
+Route::get('/clima/export/pdf', [WeatherController::class, 'exportPDF'])->name('weather.export.pdf');
+
+
 

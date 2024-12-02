@@ -56,4 +56,5 @@ class DatosController extends Controller
 
         return view('dashboard', compact('temperaturaIdeal', 'humedadIdeal'));
     }
+    
 }

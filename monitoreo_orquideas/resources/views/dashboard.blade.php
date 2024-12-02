@@ -58,6 +58,20 @@
             margin: 1rem 0;
             font-size: 1.2rem;
         }
+
+        .btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background: #45a049;
+        }
     </style>
 </head>
 
@@ -97,8 +111,23 @@
             <h3>Valores ideales para las orquídeas</h3>
             <p><strong>Temperatura ideal:</strong> {{ $temperaturaIdeal[0] }}°C - {{ $temperaturaIdeal[1] }}°C</p>
             <p><strong>Humedad ideal:</strong> {{ $humedadIdeal[0] }}% - {{ $humedadIdeal[1] }}%</p>
+            <form method="GET" action="{{ route('weather.export.pdf') }}">
+                <button type="submit">Exportar a PDF</button>
+            </form>
         </div>
     </div>
+
+    <!--<div class="container">
+        <h1>Clima de Santiago</h1>
+        <div class="weather-info">
+            <p><strong>Temperatura:</strong> {{ $weather['temperatura'] ?? 'N/A' }} °C</p>
+            <p><strong>Humedad:</strong> {{ $weather['humedad'] ?? 'N/A' }} %</p>
+            <p><strong>Descripción:</strong> {{ $weather['descripcion'] ?? 'N/A' }}</p>
+        </div>
+        <form method="GET" action="{{ route('weather.export.pdf') }}">
+            <button type="submit">Exportar a PDF</button>
+        </form>
+    </div>-->
 
     <script>
         // Función para obtener datos del servidor
