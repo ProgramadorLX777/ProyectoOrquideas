@@ -82,7 +82,7 @@
     <div class="container">
         <div class="box">
             <h3>Calendario de Riego</h3>
-            <p>Planifica y visualiza los próximos riegos.</p>
+            <p>Visualizar los próximos riegos.</p>
             <button onclick="window.location.href='/calendario-riego'">Ver Calendario</button>
         </div>
         <!--
@@ -104,8 +104,8 @@
         </div>
 
         <div class="box">
-            <h3>Conectar Sensores</h3>
-            <p>Administra y configura los sensores.</p>
+            <h3>Activar Sensores</h3>
+            <p>Para comenzar con el regado de las orquídeas solo debe presionar el botón a continuación:</p>
             <button id="activar-riego"
             style="margin-top: 10px; background: #2196F3; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
             Activar Riego
@@ -115,16 +115,26 @@
 
     </div>
 
-    <div class="box">
-        <div class="dashboard-info">
-            <h3>Valores ideales para las orquídeas</h3>
-            <p><strong>Temperatura ideal:</strong> {{ $temperaturaIdeal[0] }}°C - {{ $temperaturaIdeal[1] }}°C</p>
-            <p><strong>Humedad ideal:</strong> {{ $humedadIdeal[0] }}% - {{ $humedadIdeal[1] }}%</p>
-            <form method="GET" action="{{ route('weather.export.pdf') }}">
-                <button type="submit">Exportar a PDF</button>
-            </form>
+    <div class="container">
+        <div class="box">
+            <div class="dashboard-info">
+                <h3>Valores ideales para las orquídeas</h3>
+                <p><strong>Temperatura ideal:</strong> {{ $temperaturaIdeal[0] }}°C - {{ $temperaturaIdeal[1] }}°C</p>
+                <p><strong>Humedad ideal:</strong> {{ $humedadIdeal[0] }}% - {{ $humedadIdeal[1] }}%</p>
+                <form method="GET" action="{{ route('weather.export.pdf') }}">
+                    <button type="submit">Exportar a PDF</button>
+                </form>
+            </div>
         </div>
     </div>
+
+    <!--<div class="container">
+        <h1>Insertar Datos Base de Datos:</h1>
+
+        <form action="{{ route('guardar-datos') }}" method="GET">
+            <button type="submit" class="btn btn-primary">Guardar Datos desde API</button>
+        </form>
+    </div>-->
 
     <!--<div class="container">
         <h1>Clima de Santiago</h1>

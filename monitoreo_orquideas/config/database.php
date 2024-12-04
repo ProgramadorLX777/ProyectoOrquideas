@@ -62,6 +62,20 @@ return [
             ]) : [],
         ],
 
+        // Segunda base de datos: Monitoreo
+        'monitoreo' => [
+            'driver' => 'mysql',
+            'host' => env('DB_MONITOREO_HOST', '127.0.0.1'),
+            'port' => env('DB_MONITOREO_PORT', '3306'),
+            'database' => env('DB_MONITOREO_DATABASE', 'monitoreo'),
+            'username' => env('DB_MONITOREO_USERNAME', 'root'),
+            'password' => env('DB_MONITOREO_PASSWORD', ''),
+            'unix_socket' => env('DB_MONITOREO_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+        ],
+
         'mariadb' => [
             'driver' => 'mariadb',
             'url' => env('DB_URL'),
@@ -147,7 +161,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
         ],
 
         'default' => [

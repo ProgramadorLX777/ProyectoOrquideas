@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DatosController;
-
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\ApiDataController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,6 +25,17 @@ use App\Http\Controllers\WeatherController;
 
 // Ruta para exportar datos del clima en PDF
 Route::get('/clima/export/pdf', [WeatherController::class, 'exportPDF'])->name('weather.export.pdf');
+
+Route::get('/test-db', function () {
+    try {
+        DB::connection()->getPdo();
+        return 'Conexión exitosa';
+    } catch (\Exception $e) {
+        return 'Error al conectar: ' . $e->getMessage();
+    }
+});
+
+Route::get('/guardar-datos', [ApiDataController::class, 'guardarDatos'])->name('guardar-datos');
 
 
 
